@@ -14,7 +14,7 @@ const root = createRoot(container);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
+      <BrowserRouter basename="/car-rent-service">
         <PersistGate persistor={persistor}>
           <App />
         </PersistGate>
