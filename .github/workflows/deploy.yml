@@ -1,16 +1,18 @@
 name: Pojehali🚎
+
 on:
   push:
     branches: [main]
+    
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2.3.1
 
       - name: Install modules
-        run: npm i
+        run: npm install
 
       - name: Build app
         run: npm run build
@@ -18,6 +20,5 @@ jobs:
       - name: Kukuha vse 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
-          ACCESS_TOKEN: ${{ secrets.GH_DEPLOY }}
           branch: gh-pages
           folder: build
