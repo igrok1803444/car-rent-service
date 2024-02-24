@@ -9,7 +9,7 @@ export const HomeContainer = styled.main`
       rgba(46, 47, 66, 0.7),
       rgba(46, 47, 66, 0.7)
     ),
-    url("/images/home-background/rentalCar.jpg");
+    url("/car-rent-service/images/home-background/rentalCar.jpg");
 
   background-color: rgba(255, 255, 255, 0.5);
   background-size: cover;
