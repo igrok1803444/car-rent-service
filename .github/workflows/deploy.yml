@@ -18,5 +18,6 @@ jobs:
       - name: Kukuha vse 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:
+          ACCESS_TOKEN: ${{ secrets.GH_DEPLOY }}
           branch: gh-pages
           folder: build
