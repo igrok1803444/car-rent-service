@@ -1,7 +1,9 @@
+import { InformationLI, InformationText } from "./InformationListItem.styled";
+
 export const InformationListItem = ({ children }) => {
   return (
-    <li>
-      <p>{children}</p>
-    </li>
+    <InformationLI>
+      <InformationText>{children}</InformationText>
+    </InformationLI>
   );
 };

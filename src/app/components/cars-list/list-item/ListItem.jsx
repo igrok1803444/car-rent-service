@@ -7,6 +7,17 @@ import {
   addToFavorite,
   removeFromFavorite,
 } from "../../../../redux/favorite/favoriteSlice";
+import {
+  CarData,
+  CarHeaderWrapper,
+  CarName,
+  Icon,
+  IconButton,
+  LI,
+} from "./ListItem.styled";
+import { Button } from "../../button/Button";
+import { ActionText } from "../../../styles/ActionText";
+import { Img } from "../../../styles/Img";
 
 export const ListItem = ({ car }) => {
   const dispatch = useDispatch();
@@ -60,30 +71,30 @@ export const ListItem = ({ car }) => {
     event.target.classList.add("favorite");
   };
   return (
-    <li onClick={handleClick}>
-      <button type="button" className={isFavorite} onClick={handleFavorite}>
-        Learn more
-      </button>
-      <img
+    <LI>
+      <IconButton type="button" className={isFavorite} onClick={handleFavorite}>
+        <Icon className={isFavorite} />
+      </IconButton>
+      <Img
         loading="lazy"
         src={img}
         alt={`${make} ${model} ${year} by ${rentalCompany}`}
         width={274}
         height={268}
       />
-      <div>
-        <div>
-          <p>
+      <CarData>
+        <CarHeaderWrapper>
+          <CarName>
             {make}
-            <span> {model}</span>, {year}
-          </p>
+            <ActionText> {model}</ActionText>, {year}
+          </CarName>
           <p>{rentalPrice}</p>
-        </div>
+        </CarHeaderWrapper>
         <InformationList dataArray={carInfoList} />
-        <button type="button" onClick={handleClick}>
+        <Button type="button" onClick={handleClick}>
           Learn more
-        </button>
-      </div>
-    </li>
+        </Button>
+      </CarData>
+    </LI>
   );
 };

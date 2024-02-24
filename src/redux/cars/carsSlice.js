@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { getCars, loadMore } from "./operations";
 
 const handlePending = (state, payload) => {
-  state.isLoading = true;
+  state.cars.isLoading = true;
 };
 
 const carsInitialState = {

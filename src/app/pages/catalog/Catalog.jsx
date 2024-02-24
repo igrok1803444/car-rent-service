@@ -1,26 +1,32 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCars, loadMore } from "../../../redux/cars/operations";
+import { getCars } from "../../../redux/cars/operations";
 import {
   selectIsLoading,
-  selectPage,
   selectVisibleCars,
 } from "../../../redux/cars/selectors";
 import { CarsList } from "../../components/cars-list/CarsList";
 import ReactModal from "react-modal";
 import { selectModalIsOpen } from "../../../redux/modal/selectors";
 import { closeModal } from "../../../redux/modal/modalSlice";
-import { ModalInfo } from "../../components/modal/ModalInfo";
 import { FilterZone } from "../../components/filter-zone/FilterZone";
-import { selectFilter } from "../../../redux/filter/selectors";
+
+import { LoadMore } from "../../components/load-more/LoadMore";
+import { Preview } from "./Catalog.styled";
+import { ModalInfo } from "../../components/modal/modal-info/ModalInfo";
+import { ModalStyles } from "../../components/modal/Modal.styled";
+import { NoResultText } from "../../components/no-result- text/NoResultText";
+import { RingLoader } from "react-spinners";
+import { theme } from "../../styles/theme";
 
 export const Catalog = () => {
   const dispatch = useDispatch();
   const cars = useSelector(selectVisibleCars);
   const isLoading = useSelector(selectIsLoading);
   const modalIsOpen = useSelector(selectModalIsOpen);
-  const page = useSelector(selectPage);
-  const { make } = useSelector(selectFilter);
+
+  console.log(isLoading);
+
   const handleModalClose = (event) => {
     event.preventDefault();
     dispatch(closeModal());
@@ -32,23 +38,26 @@ export const Catalog = () => {
   return (
     <>
       <main>
-        <FilterZone></FilterZone>
-        {!isLoading && cars.length > 0 && <CarsList cars={cars} />}
-        {!isLoading && cars.length >= 12 && (
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(loadMore({ page, make }));
-            }}
-          >
-            Load More
-          </button>
-        )}
+        <div className="container">
+          <FilterZone></FilterZone>
+
+          <Preview>
+            {!isLoading && cars.length > 0 && <CarsList cars={cars} />}
+            {!isLoading && cars.length === 0 && <NoResultText />}
+            <RingLoader
+              cssOverride={{ margin: "24px auto" }}
+              color={theme.colors.background.spiner}
+              loading={isLoading}
+            />
+            {!isLoading && cars.length >= 12 && <LoadMore />}
+          </Preview>
+        </div>
       </main>
       <ReactModal
         isOpen={modalIsOpen}
         onRequestClose={handleModalClose}
         appElement={document.body}
+        style={ModalStyles}
       >
         <ModalInfo></ModalInfo>
       </ReactModal>

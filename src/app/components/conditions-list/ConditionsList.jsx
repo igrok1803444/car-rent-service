@@ -1,4 +1,6 @@
 import { getNumberFromString } from "../../../features/index";
+import { ActionText } from "../../styles/ActionText";
+import { ConditionsLI, ConditionsListStyled } from "./ConditionsList.styled";
 
 export const ConditionsList = ({ listInfo }) => {
   const { rentalConditions, mileage, rentalPrice } = listInfo;
@@ -19,29 +21,31 @@ export const ConditionsList = ({ listInfo }) => {
     return `${Math.floor(mileage / 1000)},${mileage % 1000}`;
   };
   return (
-    <ul>
-      <li>
+    <ConditionsListStyled>
+      <ConditionsLI>
         <p>
-          Minimum age: <span>{getAgeNumber()}</span>
+          Minimum age: <ActionText>{getAgeNumber()}</ActionText>
         </p>
-      </li>
+      </ConditionsLI>
 
       {prepareConditions().map((item, index) => {
         return (
-          <li key={index}>
+          <ConditionsLI key={index}>
             <p>{item}</p>
-          </li>
+          </ConditionsLI>
         );
       })}
 
-      <li>
+      <ConditionsLI>
         <p>
-          Mileage: <span>{prepareMileage()}</span>
+          Mileage: <ActionText>{prepareMileage()}</ActionText>
         </p>
-      </li>
-      <li>
-        <p>Price: {getNumberFromString(rentalPrice)}$</p>
-      </li>
-    </ul>
+      </ConditionsLI>
+      <ConditionsLI>
+        <p>
+          Price: <ActionText>{getNumberFromString(rentalPrice)}$</ActionText>
+        </p>
+      </ConditionsLI>
+    </ConditionsListStyled>
   );
 };

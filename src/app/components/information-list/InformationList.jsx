@@ -1,8 +1,9 @@
+import { InformationListStyled } from "./InformationList.styled";
 import { InformationListItem } from "./information-list-item/InformationListItem";
 
-export const InformationList = ({ dataArray }) => {
+export const InformationList = ({ dataArray, styles }) => {
   return (
-    <ul>
+    <InformationListStyled style={styles}>
       {dataArray
         .filter((item) => {
           return item;
@@ -10,6 +11,6 @@ export const InformationList = ({ dataArray }) => {
         .map((item, index) => {
           return <InformationListItem key={index}>{item}</InformationListItem>;
         })}
-    </ul>
+    </InformationListStyled>
   );
 };
