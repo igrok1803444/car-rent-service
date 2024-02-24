@@ -1,19 +1,29 @@
 import styled from "styled-components";
 import { NavLink as ReactRouteLink } from "react-router-dom";
 
-export const HeaderSection = styled.header`
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
+export const HomeContainer = styled.main`
+  min-width: 100vh;
+  min-height: 100vh;
+
+  background-image: linear-gradient(
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url("/images/home-background/rentalCar.jpg");
+
+  background-color: rgba(255, 255, 255, 0.5);
+  background-size: cover;
+`;
+
+export const MainTitle = styled.h1`
+  max-width: 700px;
+  width: max-content;
 
   margin: 0 auto;
 
-  padding: 14px 0;
+  font-size: 36px;
 
-  width: 100%;
-
-  background-color: ${({ theme }) => theme.colors.background.headerSection};
+  color: white;
 `;
 
 export const Nav = styled.nav`
@@ -25,6 +35,8 @@ export const Nav = styled.nav`
   max-width: 600px;
 
   margin: 0 auto;
+
+  margin-top: 36px;
 
   text-align: center;
 `;

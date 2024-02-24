@@ -18,8 +18,9 @@ import { ModalStyles } from "../../components/modal/Modal.styled";
 import { NoResultText } from "../../components/no-result- text/NoResultText";
 import { RingLoader } from "react-spinners";
 import { theme } from "../../styles/theme";
+import { Header } from "../../components/header/Header";
 
-export const Catalog = () => {
+const Catalog = () => {
   const dispatch = useDispatch();
   const cars = useSelector(selectVisibleCars);
   const isLoading = useSelector(selectIsLoading);
@@ -37,6 +38,7 @@ export const Catalog = () => {
   }, [dispatch]);
   return (
     <>
+      <Header />
       <main>
         <div className="container">
           <FilterZone></FilterZone>
@@ -64,3 +66,5 @@ export const Catalog = () => {
     </>
   );
 };
+
+export default Catalog;
