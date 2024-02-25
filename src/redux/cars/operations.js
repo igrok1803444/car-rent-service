@@ -45,7 +45,7 @@ export const loadMore = createAsyncThunk(
         config.params.make = reqParams.make;
       }
       const response = await instance.get(``, config);
-      console.log(response);
+  
 
       if (response.data.length < 1) {
         Notify.failure("No cars Found");
