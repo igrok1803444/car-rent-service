@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectModalData } from "../../../../redux/modal/selectors";
 import { prepareAddress } from "../../../../features";
 import { InformationList } from "../../information-list/InformationList";
@@ -14,8 +14,10 @@ import {
   ModalLink,
   ModalSubTitle,
 } from "./ModalInfo.styled";
+import { closeModal } from "redux/modal/modalSlice";
 
 export const ModalInfo = () => {
+  const dispatch = useDispatch;
   const modalData = useSelector(selectModalData);
   const {
     img,
@@ -43,9 +45,14 @@ export const ModalInfo = () => {
     `Fuel Consumption: ${fuelConsumption}`,
     `Engine Size: ${engineSize}`,
   ];
+
+  const handleModalClose = (event) => {
+    event.preventDefault();
+    dispatch(closeModal());
+  };
   return (
     <ModalInfoWrapper>
-      <ModalCloseIcon />
+      <ModalCloseIcon onClick={handleModalClose} />
       <Img
         src={img}
         alt={`${make} ${model} ${year} by ${rentalCompany}`}

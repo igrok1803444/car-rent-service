@@ -26,8 +26,6 @@ const Catalog = () => {
   const isLoading = useSelector(selectIsLoading);
   const modalIsOpen = useSelector(selectModalIsOpen);
 
-  console.log(isLoading);
-
   const handleModalClose = (event) => {
     event.preventDefault();
     dispatch(closeModal());
