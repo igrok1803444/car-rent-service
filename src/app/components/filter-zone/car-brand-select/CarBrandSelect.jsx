@@ -38,7 +38,7 @@ export const CarBrandSelect = ({ setMake }) => {
       name="make"
       onChange={(event) => {
         if (!event) {
-          setMake(Infinity);
+          setMake("");
 
           return;
         }
