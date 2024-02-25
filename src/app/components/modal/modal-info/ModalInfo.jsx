@@ -17,7 +17,7 @@ import {
 import { closeModal } from "redux/modal/modalSlice";
 
 export const ModalInfo = () => {
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const modalData = useSelector(selectModalData);
   const {
     img,
@@ -53,11 +53,7 @@ export const ModalInfo = () => {
   return (
     <ModalInfoWrapper>
       <ModalCloseIcon onClick={handleModalClose} />
-      <Img
-        src={img}
-        alt={`${make} ${model} ${year} by ${rentalCompany}`}
-        max-width={460}
-      />
+      <Img src={img} alt={`${make} ${model} ${year} by ${rentalCompany}`} />
       <ModalCarInfoWrapper>
         <ModalCarName>
           {make}
