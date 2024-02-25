@@ -32,6 +32,9 @@ export const FilterZone = () => {
     if (make !== "") {
       dispatch(getCars({ make }));
     }
+    if (make === "") {
+      dispatch(getCars());
+    }
     dispatch(setMakeFilter(make));
     dispatch(setPriceFilter(price));
 
