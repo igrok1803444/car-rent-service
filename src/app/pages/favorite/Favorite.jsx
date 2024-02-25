@@ -13,9 +13,11 @@ const Favorite = () => {
       <Header />
 
       <main>
-        {!isLoading && favoriteList.length === 0 && <NoResultText />}
+        <div div className="container">
+          {!isLoading && favoriteList.length === 0 && <NoResultText />}
 
-        <CarsList cars={favoriteList} />
+          <CarsList cars={favoriteList} />
+        </div>
       </main>
     </>
   );
