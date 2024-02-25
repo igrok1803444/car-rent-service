@@ -42,7 +42,7 @@ const Catalog = () => {
           <FilterZone></FilterZone>
 
           <Preview>
-            {!isLoading && cars.length > 0 && <CarsList cars={cars} />}
+            {cars.length > 0 && <CarsList cars={cars} />}
             {!isLoading && cars.length === 0 && <NoResultText />}
             <RingLoader
               cssOverride={{ margin: "24px auto" }}
