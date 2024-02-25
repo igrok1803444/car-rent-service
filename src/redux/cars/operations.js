@@ -1,5 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { instance } from "../../features/index";
+import { Notify } from "notiflix";
 
 export const getCars = createAsyncThunk(
   "cars/getCars",
@@ -20,9 +21,13 @@ export const getCars = createAsyncThunk(
 
       const response = await instance.get("", config);
 
+      if (response.data.length < 1) {
+        Notify.failure("No cars Foun");
+        return thunkAPI.rejectWithValue("No cars Foun");
+      }
+
       return response.data;
     } catch (error) {
-      console.log(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -40,6 +45,12 @@ export const loadMore = createAsyncThunk(
         config.params.make = reqParams.make;
       }
       const response = await instance.get(``, config);
+      console.log(response);
+
+      if (response.data.length < 1) {
+        Notify.failure("No cars Found");
+        return thunkAPI.rejectWithValue("No cars Found");
+      }
 
       return response.data;
     } catch (error) {

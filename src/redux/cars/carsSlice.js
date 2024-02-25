@@ -4,6 +4,9 @@ import { getCars, loadMore } from "./operations";
 const handlePending = (state, payload) => {
   state.cars.isLoading = true;
 };
+const handleRejected = (state, payload) => {
+  state.cars.isLoading = false;
+};
 
 const carsInitialState = {
   cars: {
@@ -19,11 +22,13 @@ const carsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCars.pending, handlePending)
+      .addCase(getCars.rejected, handleRejected)
       .addCase(getCars.fulfilled, (state, action) => {
         state.cars.items = action.payload;
         state.cars.isLoading = false;
         state.cars.page = 2;
       })
+      .addCase(loadMore.rejected, handleRejected)
       .addCase(loadMore.pending, handlePending)
       .addCase(loadMore.fulfilled, (state, action) => {
         state.cars.items.push(...action.payload);
